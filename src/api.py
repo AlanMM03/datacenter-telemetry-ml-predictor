@@ -19,7 +19,7 @@ except Exception as ex:
     raise RuntimeError(f"Error al cargar los modelos: {ex}")
 
 #Creamos la validación de datos que utilizará la API.
-class Features(BaseModel):
+class PodFeatures(BaseModel):
     momory_mib: int
     num_gpu: int
     gpu_milli: int
@@ -30,7 +30,7 @@ class Features(BaseModel):
 
 #Creamos el método que servirá como predictor
 @app.post("/predict")
-def predict_cpu(features: Features):
+def predict_cpu(features: PodFeatures):
     try:
         input_data=pd.DataFrame([features.model_dump()])
         
